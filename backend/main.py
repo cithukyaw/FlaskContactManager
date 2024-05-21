@@ -21,11 +21,12 @@ def get_contacts():
 def create_contact():
     name = request.json.get('name')
     email = request.json.get('email')
+    phone = request.json.get('phone')
 
     if not name or not email:
         return jsonify({'message': 'You must include a name and email.'}), 400
 
-    contact = Contact(name=name, email=email)
+    contact = Contact(name=name, email=email, phone=phone)
 
     try:
         db.session.add(contact)
@@ -48,6 +49,7 @@ def update_contact(contact_id: int):
     data = request.json
     contact.name = data.get('name', contact.name)
     contact.email = data.get('email', contact.email)
+    contact.phone = data.get('phone', contact.phone)
 
     try:
         db.session.commit()
