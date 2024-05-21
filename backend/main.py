@@ -26,13 +26,14 @@ def create_contact():
         return jsonify({'message': 'You must include a name and email.'}), 400
 
     contact = Contact(name=name, email=email)
+
     try:
         db.session.add(contact)
         db.session.commit()
     except Exception as e:
         return jsonify({'message': str(e)}), 400
 
-    return jsonify({'message': 'Contact created'}), 201
+    return jsonify({'message': 'Contact created.'}), 201
 
 
 # Update
@@ -42,15 +43,35 @@ def update_contact(contact_id: int):
     contact = db.session.get(Contact, contact_id)
 
     if not contact:
-        return jsonify({'message': 'Contact not found'}), 404
+        return jsonify({'message': 'Contact not found.'}), 404
 
     data = request.json
     contact.name = data.get('name', contact.name)
     contact.email = data.get('email', contact.email)
 
-    db.session.commit()
+    try:
+        db.session.commit()
+    except Exception as e:
+        return jsonify({'message': str(e)}), 400
 
-    return jsonify({'message': 'Contact updated'}), 200
+    return jsonify({'message': 'Contact updated.'}), 200
+
+
+# Delete
+@app.route('/contacts/<int:contact_id>', methods=['DELETE'])
+def delete_contact(contact_id: int):
+    contact = db.session.get(Contact, contact_id)
+
+    if not contact:
+        return jsonify({'message': 'Contact not found.'}), 404
+
+    try:
+        db.session.delete(contact)
+        db.session.commit()
+    except Exception as e:
+        return jsonify({'message': str(e)}), 400
+
+    return jsonify({'message': 'Contact deleted.'}), 200
 
 
 if __name__ == '__main__':
