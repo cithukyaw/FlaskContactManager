@@ -1,9 +1,11 @@
 import {useState} from "react";
 
-const ContactForm = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
+const ContactForm = ({existingContact = {}, updateCallback}) => {
+    const [name, setName] = useState(existingContact.name || '')
+    const [email, setEmail] = useState(existingContact.email || '')
+    const [phone, setPhone] = useState(existingContact.phone || '')
+
+    const updating = Object.entries(existingContact).length !== 0
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -13,9 +15,9 @@ const ContactForm = () => {
             email,
             phone
         }
-        const url = 'http://127.0.0.1:5000/contacts'
+        const url = 'http://127.0.0.1:5000/contacts' + (updating ? `/${existingContact.id}` : '' )
         const options = {
-            method: 'POST',
+            method: updating ? 'PATCH' : 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -26,7 +28,7 @@ const ContactForm = () => {
             const json = await response.json()
             alert(json.message)
         } else {
-            // successful
+            updateCallback()
         }
     }
 
@@ -58,7 +60,8 @@ const ContactForm = () => {
                 onChange={(e) => setPhone(e.target.value)}
             />
         </div>
-        <button type="submit">Create Contact</button>
+        <button type="submit">{ updating ? 'Update' : 'Create'}</button>
+        <button type="button" onClick={updateCallback}>Cancel</button>
     </form>
 }
 

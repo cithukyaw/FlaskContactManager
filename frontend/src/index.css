@@ -25,6 +25,25 @@ h1 {
     line-height: 1.1;
 }
 
+input, button, label {
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type=text], input[type=email], input[type=password] {
+    padding: 5px 10px;
+    height: 25px;
+    display: block;
+    width: calc(100% - 20px);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
 button {
     border-radius: 8px;
     border: 1px solid transparent;
@@ -35,6 +54,7 @@ button {
     background-color: #1a1a1a;
     cursor: pointer;
     transition: border-color 0.25s;
+    margin: 0 3px;
 }
 
 button:hover {
@@ -48,6 +68,7 @@ button:focus-visible {
 
 table {
     border-collapse: collapse;
+    margin-bottom: 10px;
 }
 
 table th {
@@ -63,6 +84,38 @@ table td {
     border: 1px solid #ccc;
 }
 
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    border-radius: 5px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 75%;
+}
+
+.close {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 @media (prefers-color-scheme: light) {
     :root {
         color: #213547;
@@ -75,5 +128,6 @@ table td {
 
     button {
         background-color: #f9f9f9;
+        border-color: #ccc;
     }
 }

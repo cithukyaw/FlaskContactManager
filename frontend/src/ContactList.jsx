@@ -1,4 +1,4 @@
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, updateContact, updateCallback }) => {
     return <div>
         <h2>Contact Manager</h2>
         <table>
@@ -17,7 +17,7 @@ const ContactList = ({ contacts }) => {
                         <td>{contact.email}</td>
                         <td>{contact.phone}</td>
                         <td>
-                            <button>Update</button>
+                            <button onClick={() => updateContact(contact)}>Update</button>
                             <button>Delete</button>
                         </td>
                     </tr>
