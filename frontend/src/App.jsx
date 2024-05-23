@@ -1,5 +1,5 @@
 import './App.css'
-import {useLayoutEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import ContactList from "./ContactList.jsx";
 import ContactForm from "./ContactForm.jsx";
 
@@ -8,7 +8,7 @@ function App() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentContact, setCurrentContact] = useState({});
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         fetchContacts()
     }, [])
 
