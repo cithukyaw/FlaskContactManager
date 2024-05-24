@@ -12,14 +12,24 @@ Reference: https://www.youtube.com/watch?v=PppslXOR7TA
 
     cd backend
 
+    # create virtual environment (windows)
     py -3 -m venv .venv
 
+    # activate the environment (windows)
     .venv\Scripts\activate
 
+    # install dependencies
     pip install -r requirements.txt
+
+    # run app
+    flask --app main run
 
 ## Run Fronend
 
     cd frontend
 
+    # install dependencies
+    npm install
+
+    # run app
     npm run dev
