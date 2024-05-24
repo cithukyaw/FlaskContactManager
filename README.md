@@ -1,6 +1,6 @@
 # FlaskContactManager
 
-A full stack application using Python + JavaScript.
+A simple full stack application using Python + JavaScript.
 
 - [Backend](backend/) - Python with Flask and SQLite for the backend
 - [Frontend](frontend/) - JavaScript with React for the frontend
