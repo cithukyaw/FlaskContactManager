@@ -15,7 +15,7 @@ const ContactForm = ({existingContact = {}, updateCallback}) => {
             email,
             phone
         }
-        const url = 'http://127.0.0.1:5000/contacts' + (updating ? `/${existingContact.id}` : '' )
+        const url = `${import.meta.env.VITE_API_URL}contacts` + (updating ? `/${existingContact.id}` : '' )
         const options = {
             method: updating ? 'PATCH' : 'POST',
             headers: {
